@@ -1,10 +1,12 @@
+machine:
+  node:
+    version: 6.9.4
 deployment:
   development:
     branch: development
     commands:
       - aws configure set region eu-central-1
       - npm install -g bower
-      - npm install -g gulp
       - npm install -g angular-cli
       - bower install
       - npm install
