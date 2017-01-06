@@ -1,0 +1,17 @@
+{
+  "name": "datenbank-ui-client",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Udlei Nati <udlei@protonmail.ch>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/datenbank-io/datenbank-ui-client",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
