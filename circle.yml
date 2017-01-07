@@ -4,6 +4,10 @@ machine:
 test:
   override:
     - echo "no test"
+dependencies:
+  override:
+    - rm -rf node_modules/
+    - npm install
 deployment:
   development:
     branch: development
