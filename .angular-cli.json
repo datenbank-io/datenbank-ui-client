@@ -30,7 +30,10 @@
         "../node_modules/bootstrap/dist/js/bootstrap.js",
         "../node_modules/slickgrid/lib/jquery-ui-1.11.3.js",
         "../node_modules/slickgrid/lib/jquery.event.drag-2.3.0.js",
-        "../node_modules/angular-slickgrid/lib/multiple-select/multiple-select.js"
+        "../node_modules/angular-slickgrid/lib/multiple-select/multiple-select.js",
+        "../node_modules/ace-builds/src-min/ace.js",
+        "../node_modules/ace-builds/src-min/mode-sql.js",
+        "../node_modules/ace-builds/src-min/theme-eclipse.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

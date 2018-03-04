@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorage } from 'ngx-store';
 
 import { MainService } from '../../main.service';
 
@@ -8,6 +9,7 @@ import { MainService } from '../../main.service';
   styleUrls: ['./editor.component.css']
 })
 export class EditorComponent implements OnInit {
+  @LocalStorage() text: string = "";
 
   constructor(private mainService: MainService) { }
 

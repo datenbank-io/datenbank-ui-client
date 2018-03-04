@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { LocalStorage } from 'ngx-store';
 
 import { MainService } from '../../main.service';
 
@@ -10,8 +11,14 @@ import { MainService } from '../../main.service';
 })
 export class ConnectComponent implements OnInit {
   @ViewChild('heroForm') f: NgForm;
+  @LocalStorage() database: String;
+  @LocalStorage() username: String;
+  @LocalStorage() password: String;
+  @LocalStorage() dialect: String;
 
-  constructor(private mainService: MainService) { }
+  constructor(
+    private mainService: MainService,
+  ) { }
 
   ngOnInit() {
   }
