@@ -4,11 +4,11 @@ import * as io from 'socket.io-client';
 
 @Injectable()
 export class MainService {
-  private socket;
+  socket;
   private socketHost = 'http://localhost:3000';
   socketStatus: String;
   dbConnectionStatus: String;
-  dbResponse: String;
+  // dbResponse: String;
 
   constructor() {
     this.startSocketConnection()
@@ -35,7 +35,7 @@ export class MainService {
 
     this.socket.on('db-response', (data) => {
       console.log(data);
-      this.dbResponse = JSON.stringify(data);
+      // this.dbResponse = JSON.stringify(data);
     })
   }
 
