@@ -1,0 +1,10 @@
+<div>
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <input name="database" ngModel placeholder="database" />
+    <input name="username" ngModel placeholder="username" />
+    <input name="password" ngModel type="password" placeholder="password" />
+    <input name="dialect" ngModel placeholder="mysql" />
+    <button>connect</button>
+    <span>{{ mainService.dbConnectionStatus }}</span>
+  </form>
+</div>
