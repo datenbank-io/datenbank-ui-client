@@ -167,6 +167,37 @@ export class DynamoDBService {
       })
 
     }
+
+    async removeDatasourceEntry(id: string): Promise<boolean> {
+      console.log("DynamoDBService: deleting " + id + " entry");
+
+      const userId = this.cognitoUtil.getCognitoIdentity();
+
+      let clientParams:any = {
+          params: {TableName: 'datasource'}
+      };
+      if (environment.dynamodb_endpoint) {
+          clientParams.endpoint = environment.dynamodb_endpoint;
+      }
+      var DDB = new DynamoDB(clientParams);
+
+      // Write the item to the table
+      var itemParams =
+          {
+              TableName: 'datasource',
+              Key: {
+                  userId: {S: userId},
+                  id: {S: id}
+              }
+          };
+
+      return new Promise<boolean>((resolve) => {
+          DDB.deleteItem(itemParams, function (result) {
+            console.log("DynamoDBService: deleted entry: " + JSON.stringify(result));
+            resolve(true);
+        });
+      })
+    }
 }
 
 

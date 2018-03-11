@@ -41,6 +41,7 @@ import { routing } from "./app.routes";
 import { WorkspaceComponent } from './workspace/workspace.component';
 import { DatasourceListComponent } from './datasource/list/list.component';
 import { DatasourceAddComponent } from './datasource/add/add.component';
+import { DatasourceRemoveComponent } from './datasource/remove/remove.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { DatasourceAddComponent } from './datasource/add/add.component';
     WorkspaceComponent,
     ConfirmRegistrationComponent,
     DatasourceListComponent,
-    DatasourceAddComponent
+    DatasourceAddComponent,
+    DatasourceRemoveComponent
   ],
   imports: [
     BrowserModule,
