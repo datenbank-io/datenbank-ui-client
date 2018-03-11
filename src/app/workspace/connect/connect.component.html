@@ -8,5 +8,6 @@
     <input name="dialect" [(ngModel)]="dialect" placeholder="mysql" />
     <button>connect</button>
     <span>{{ mainService.dbConnectionStatus }}</span>
+    <button [routerLink]="['/securehome/datasource/list']">back</button>
   </form>
 </div>

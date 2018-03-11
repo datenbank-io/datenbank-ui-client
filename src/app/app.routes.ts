@@ -49,7 +49,6 @@ const secureHomeRoutes: Routes = [
         {path: 'jwttokens', component: JwtComponent},
         {path: 'myprofile', component: MyProfileComponent},
         {path: 'useractivity', component: UseractivityComponent},
-        {path: 'workspace', component: WorkspaceComponent},
         {
           path: 'datasource',
           children: [
@@ -59,7 +58,8 @@ const secureHomeRoutes: Routes = [
           ]
         },
         {path: '', component: MyProfileComponent}]
-    }
+    },
+    {path: 'workspace/:id', component: WorkspaceComponent},
 ];
 
 const routes: Routes = [
