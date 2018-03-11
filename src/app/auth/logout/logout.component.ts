@@ -1,7 +1,7 @@
-import {Component} from "@angular/core";
-import {Router} from "@angular/router";
-import {UserLoginService} from "../../service/user-login.service";
-import {LoggedInCallback} from "../../service/cognito.service";
+import { Component } from "@angular/core";
+import { Router } from "@angular/router";
+import { UserLoginService } from "../../service/user-login.service";
+import { LoggedInCallback } from "../../service/cognito.service";
 
 @Component({
   selector: 'awscognito-angular2-app',
@@ -17,9 +17,9 @@ export class LogoutComponent implements LoggedInCallback {
   isLoggedIn(message: string, isLoggedIn: boolean) {
       if (isLoggedIn) {
           this.userService.logout();
-          this.router.navigate(['/home']);
+          this.router.navigate(['/auth/login']);
       }
 
-      this.router.navigate(['/home']);
+      this.router.navigate(['/auth/login']);
   }
 }

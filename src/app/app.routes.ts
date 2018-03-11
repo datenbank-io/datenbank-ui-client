@@ -1,6 +1,5 @@
 import {RouterModule, Routes} from "@angular/router";
 import {ModuleWithProviders} from "@angular/core";
-import {AboutComponent, HomeComponent, HomeLandingComponent} from "./public/home.component";
 import {SecureHomeComponent} from "./secure/landing/securehome.component";
 import {MyProfileComponent} from "./secure/profile/myprofile.component";
 import {JwtComponent} from "./secure/jwttokens/jwt.component";
@@ -17,24 +16,21 @@ import { WorkspaceComponent } from "./workspace/workspace.component";
 const homeRoutes: Routes = [
     {
         path: '',
-        redirectTo: '/home',
+        redirectTo: '/auth/login',
         pathMatch: 'full'
     },
     {
-        path: 'home',
-        component: HomeComponent,
-        children: [
-            {path: 'about', component: AboutComponent},
-            {path: 'login', component: LoginComponent},
-            {path: 'register', component: RegisterComponent},
-            {path: 'confirmRegistration/:username', component: ConfirmRegistrationComponent},
-            {path: 'resendCode', component: ResendCodeComponent},
-            {path: 'forgotPassword/:email', component: ForgotPasswordStep2Component},
-            {path: 'forgotPassword', component: ForgotPasswordStep1Component},
-            {path: 'newPassword', component: NewPasswordComponent},
-            { path: '', component: HomeLandingComponent }
-        ]
-    },
+      path: 'auth',
+      children: [
+        { path: 'login', component: LoginComponent },
+        { path: 'register', component: RegisterComponent },
+        { path: 'confirmRegistration/:username', component: ConfirmRegistrationComponent },
+        { path: 'resendCode', component: ResendCodeComponent },
+        { path: 'forgotPassword/:email', component: ForgotPasswordStep2Component },
+        { path: 'forgotPassword', component: ForgotPasswordStep1Component },
+        { path: 'newPassword', component: NewPasswordComponent}
+      ]
+    }
 ];
 
 const secureHomeRoutes: Routes = [
@@ -63,7 +59,7 @@ const routes: Routes = [
             ...secureHomeRoutes,
             {
                 path: '',
-                component: HomeComponent
+                component: LoginComponent
             }
         ]
     },
