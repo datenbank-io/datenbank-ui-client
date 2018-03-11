@@ -2,9 +2,12 @@ import {Injectable} from "@angular/core";
 import {CognitoUtil} from "./cognito.service";
 import {environment} from "../../environments/environment";
 
-import {Stuff} from "../secure/useractivity/useractivity.component";
+import { LogStuff } from "../secure/useractivity/useractivity.component";
+import { DatasourceStuff } from "../datasource/list/list.component";
+
 import * as AWS from "aws-sdk/global";
 import * as DynamoDB from "aws-sdk/clients/dynamodb";
+import * as cuid from "cuid";
 
 /**
  * Created by Vladimir Budilov
@@ -21,7 +24,7 @@ export class DynamoDBService {
         return AWS;
     }
 
-    getLogEntries(mapArray: Array<Stuff>) {
+    getLogEntries(mapArray: Array<LogStuff>) {
         console.log("DynamoDBService: reading from DDB with creds - " + AWS.config.credentials);
         var params = {
             TableName: environment.ddbTableName,
@@ -88,6 +91,82 @@ export class DynamoDBService {
         });
     }
 
+    getDatasourceEntries(mapArray: Array<DatasourceStuff>) {
+      console.log("DynamoDBService: reading from DDB with creds - " + AWS.config.credentials);
+      var params = {
+          TableName: 'datasource',
+          KeyConditionExpression: "userId = :userId",
+          ExpressionAttributeValues: {
+              ":userId": this.cognitoUtil.getCognitoIdentity()
+          }
+      };
+
+      var clientParams:any = {};
+      if (environment.dynamodb_endpoint) {
+          clientParams.endpoint = environment.dynamodb_endpoint;
+      }
+      var docClient = new DynamoDB.DocumentClient(clientParams);
+      docClient.query(params, onQuery);
+
+      function onQuery(err, data) {
+          if (err) {
+              console.error("DynamoDBService: Unable to query the table. Error JSON:", JSON.stringify(err, null, 2));
+          } else {
+              // print all the movies
+              console.log("DynamoDBService: Query succeeded.");
+              data.Items.forEach(function (logitem) {
+                  mapArray.push({
+                    userId: logitem.userId,
+                    id: logitem.id,
+                    dialect: logitem.dialect,
+                    host: logitem.host,
+                    port: logitem.port,
+                    database: logitem.database,
+                    username: logitem.username,
+                    password: logitem.password
+                  });
+              });
+          }
+      }
+    }
+
+    async writeDatasource(datasource: DatasourceStuff): Promise<boolean> {
+      console.log("DynamoDBService: writing " + datasource.dialect + " entry");
+
+      datasource.userId = this.cognitoUtil.getCognitoIdentity();
+      datasource.id = cuid();
+
+      let clientParams:any = {
+          params: {TableName: 'datasource'}
+      };
+      if (environment.dynamodb_endpoint) {
+          clientParams.endpoint = environment.dynamodb_endpoint;
+      }
+      var DDB = new DynamoDB(clientParams);
+
+      // Write the item to the table
+      var itemParams =
+          {
+              TableName: 'datasource',
+              Item: {
+                  userId: {S: datasource.userId},
+                  id: {S: datasource.id},
+                  dialect: {S: datasource.dialect},
+                  host: {S: datasource.host},
+                  port: {S: datasource.port},
+                  username: {S: datasource.username},
+                  password: {S: datasource.password}
+              }
+          };
+
+      return new Promise<boolean>((resolve) => {
+          DDB.putItem(itemParams, function (result) {
+            console.log("DynamoDBService: wrote entry: " + JSON.stringify(result));
+            resolve(true);
+        });
+      })
+
+    }
 }
 
 

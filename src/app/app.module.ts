@@ -20,6 +20,7 @@ import { UserLoginService } from "./service/user-login.service";
 import { CognitoUtil } from "./service/cognito.service";
 import { AwsUtil } from "./service/aws.service";
 import { DynamoDBService } from "./service/ddb.service";
+import { DatasourceService } from "./service/datasource.service";
 
 import { ResponseGridComponent } from './workspace/response-grid/response-grid.component';
 
@@ -31,7 +32,6 @@ import { LogoutComponent } from "./auth/logout/logout.component";
 import { ConfirmRegistrationComponent } from "./auth/confirm-registration/confirm-registration.component";
 import { ResendCodeComponent } from "./auth/resend-code/resend-code.component";
 import { MFAComponent } from './auth/mfa/mfa.component';
-import { AboutComponent, HomeComponent, HomeLandingComponent } from "./public/home.component";
 import { UseractivityComponent } from "./secure/useractivity/useractivity.component";
 import { MyProfileComponent } from "./secure/profile/myprofile.component";
 import { SecureHomeComponent } from "./secure/landing/securehome.component";
@@ -39,6 +39,8 @@ import { JwtComponent } from "./secure/jwttokens/jwt.component";
 
 import { routing } from "./app.routes";
 import { WorkspaceComponent } from './workspace/workspace.component';
+import { DatasourceListComponent } from './datasource/list/list.component';
+import { DatasourceAddComponent } from './datasource/add/add.component';
 
 @NgModule({
   declarations: [
@@ -50,9 +52,6 @@ import { WorkspaceComponent } from './workspace/workspace.component';
     ForgotPasswordStep2Component,
     RegisterComponent,
     MFAComponent,
-    AboutComponent,
-    HomeLandingComponent,
-    HomeComponent,
     UseractivityComponent,
     MyProfileComponent,
     SecureHomeComponent,
@@ -63,7 +62,9 @@ import { WorkspaceComponent } from './workspace/workspace.component';
     ResponseComponent,
     ResponseGridComponent,
     WorkspaceComponent,
-    ConfirmRegistrationComponent
+    ConfirmRegistrationComponent,
+    DatasourceListComponent,
+    DatasourceAddComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +86,8 @@ import { WorkspaceComponent } from './workspace/workspace.component';
     DynamoDBService,
     UserRegistrationService,
     UserLoginService,
-    UserParametersService
+    UserParametersService,
+    DatasourceService
   ],
   bootstrap: [AppComponent]
 })

@@ -4,8 +4,7 @@ import {LoggedInCallback} from "../../service/cognito.service";
 import {Router} from "@angular/router";
 import {DynamoDBService} from "../../service/ddb.service";
 
-
-export class Stuff {
+export class LogStuff {
     public type: string;
     public date: string;
 }
@@ -16,7 +15,7 @@ export class Stuff {
 })
 export class UseractivityComponent implements LoggedInCallback {
 
-    public logdata: Array<Stuff> = [];
+    public logdata: Array<LogStuff> = [];
 
     constructor(public router: Router, public ddb: DynamoDBService, public userService: UserLoginService) {
         this.userService.isAuthenticated(this);

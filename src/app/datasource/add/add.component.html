@@ -1,0 +1,45 @@
+<form class="form-signin" method="POST" action="#" role="form">
+  <div class="form-group">
+      <h2>Add datasource</h2>
+  </div>
+  <div *ngIf="errorMessage!=null" class="alert alert-danger">
+      {{ errorMessage }}
+  </div>
+  <div class="form-group">
+      <label class="control-label" for="datasourceDialect">Dialect</label>
+      <input id="datasourceDialect" type="text" maxlength="50" class="form-control"
+             [(ngModel)]="datasource.dialect" [ngModelOptions]="{standalone: true}">
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="datasourceHost">Host</label>
+    <input id="datasourceHost" type="text" maxlength="50" class="form-control"
+           [(ngModel)]="datasource.host" [ngModelOptions]="{standalone: true}">
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="datasourcePort">Port</label>
+    <input id="datasourcePort" type="text" maxlength="50" class="form-control"
+          [(ngModel)]="datasource.port" [ngModelOptions]="{standalone: true}">
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="datasourceDatabase">Database</label>
+    <input id="datasourceDatabase" type="text" maxlength="50" class="form-control"
+           [(ngModel)]="datasource.database" [ngModelOptions]="{standalone: true}">
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="datasourceUsername">Username</label>
+    <input id="datasourceUsername" type="text" maxlength="50" class="form-control"
+          [(ngModel)]="datasource.username" [ngModelOptions]="{standalone: true}">
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="datasourcePassword">Password</label>
+    <input id="datasourcePassword" type="text" maxlength="50" class="form-control"
+          [(ngModel)]="datasource.password" [ngModelOptions]="{standalone: true}">
+  </div>
+  <div class="form-group">
+      <button (click)="onAddDatasource()" id="signupSubmit" type="submit" class="btn btn-info btn-block">
+          Add datasource
+      </button>
+  </div>
+  <hr>
+  <p><a [routerLink]="['/securehome/datasource/list']"> <i class="fa fa-fw fa-lock"></i>Back</a></p>
+</form>

@@ -12,6 +12,8 @@ import { ForgotPasswordStep1Component, ForgotPasswordStep2Component } from "./au
 import { ResendCodeComponent } from "./auth/resend-code/resend-code.component";
 import { NewPasswordComponent } from "./auth/new-password/new-password.component";
 import { WorkspaceComponent } from "./workspace/workspace.component";
+import { DatasourceListComponent } from './datasource/list/list.component';
+import { DatasourceAddComponent } from './datasource/add/add.component';
 
 const homeRoutes: Routes = [
     {
@@ -47,6 +49,13 @@ const secureHomeRoutes: Routes = [
         {path: 'myprofile', component: MyProfileComponent},
         {path: 'useractivity', component: UseractivityComponent},
         {path: 'workspace', component: WorkspaceComponent},
+        {
+          path: 'datasource',
+          children: [
+            { path: 'list', component: DatasourceListComponent },
+            { path: 'add', component: DatasourceAddComponent }
+          ]
+        },
         {path: '', component: MyProfileComponent}]
     }
 ];
