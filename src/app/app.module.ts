@@ -23,20 +23,21 @@ import { DynamoDBService } from "./service/ddb.service";
 
 import { ResponseGridComponent } from './workspace/response-grid/response-grid.component';
 
-import { NewPasswordComponent } from "./public/auth/newpassword/newpassword.component";
-import { RegisterComponent } from "./public/auth/register/registration.component";
-import { ForgotPassword2Component, ForgotPasswordStep1Component } from "./public/auth/forgot/forgotPassword.component";
-import { LoginComponent } from "./public/auth/login/login.component";
-import { LogoutComponent, RegistrationConfirmationComponent } from "./public/auth/confirm/confirmRegistration.component";
-import { ResendCodeComponent } from "./public/auth/resend/resendCode.component";
-import { MFAComponent } from './public/auth/mfa/mfa.component';
+import { NewPasswordComponent } from "./auth/new-password/new-password.component";
+import { RegisterComponent } from "./auth/register/register.component";
+import { ForgotPasswordStep1Component, ForgotPasswordStep2Component } from "./auth/forgot-password/forgot-password.component";
+import { LoginComponent } from "./auth/login/login.component";
+import { LogoutComponent } from "./auth/logout/logout.component";
+import { ConfirmRegistrationComponent } from "./auth/confirm-registration/confirm-registration.component";
+import { ResendCodeComponent } from "./auth/resend-code/resend-code.component";
+import { MFAComponent } from './auth/mfa/mfa.component';
 import { AboutComponent, HomeComponent, HomeLandingComponent } from "./public/home.component";
 import { UseractivityComponent } from "./secure/useractivity/useractivity.component";
 import { MyProfileComponent } from "./secure/profile/myprofile.component";
 import { SecureHomeComponent } from "./secure/landing/securehome.component";
 import { JwtComponent } from "./secure/jwttokens/jwt.component";
 
-import {routing} from "./app.routes";
+import { routing } from "./app.routes";
 import { WorkspaceComponent } from './workspace/workspace.component';
 
 @NgModule({
@@ -44,10 +45,9 @@ import { WorkspaceComponent } from './workspace/workspace.component';
     NewPasswordComponent,
     LoginComponent,
     LogoutComponent,
-    RegistrationConfirmationComponent,
     ResendCodeComponent,
     ForgotPasswordStep1Component,
-    ForgotPassword2Component,
+    ForgotPasswordStep2Component,
     RegisterComponent,
     MFAComponent,
     AboutComponent,
@@ -62,7 +62,8 @@ import { WorkspaceComponent } from './workspace/workspace.component';
     EditorComponent,
     ResponseComponent,
     ResponseGridComponent,
-    WorkspaceComponent
+    WorkspaceComponent,
+    ConfirmRegistrationComponent
   ],
   imports: [
     BrowserModule,

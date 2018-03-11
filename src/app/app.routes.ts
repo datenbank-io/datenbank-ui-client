@@ -5,12 +5,13 @@ import {SecureHomeComponent} from "./secure/landing/securehome.component";
 import {MyProfileComponent} from "./secure/profile/myprofile.component";
 import {JwtComponent} from "./secure/jwttokens/jwt.component";
 import {UseractivityComponent} from "./secure/useractivity/useractivity.component";
-import {LoginComponent} from "./public/auth/login/login.component";
-import {RegisterComponent} from "./public/auth/register/registration.component";
-import {ForgotPassword2Component, ForgotPasswordStep1Component} from "./public/auth/forgot/forgotPassword.component";
-import {LogoutComponent, RegistrationConfirmationComponent} from "./public/auth/confirm/confirmRegistration.component";
-import {ResendCodeComponent} from "./public/auth/resend/resendCode.component";
-import {NewPasswordComponent} from "./public/auth/newpassword/newpassword.component";
+import { LoginComponent } from "./auth/login/login.component";
+import { LogoutComponent } from "./auth/logout/logout.component";
+import { ConfirmRegistrationComponent } from "./auth/confirm-registration/confirm-registration.component";
+import { RegisterComponent } from "./auth/register/register.component";
+import { ForgotPasswordStep1Component, ForgotPasswordStep2Component } from "./auth/forgot-password/forgot-password.component";
+import { ResendCodeComponent } from "./auth/resend-code/resend-code.component";
+import { NewPasswordComponent } from "./auth/new-password/new-password.component";
 import { WorkspaceComponent } from "./workspace/workspace.component";
 
 const homeRoutes: Routes = [
@@ -26,9 +27,9 @@ const homeRoutes: Routes = [
             {path: 'about', component: AboutComponent},
             {path: 'login', component: LoginComponent},
             {path: 'register', component: RegisterComponent},
-            {path: 'confirmRegistration/:username', component: RegistrationConfirmationComponent},
+            {path: 'confirmRegistration/:username', component: ConfirmRegistrationComponent},
             {path: 'resendCode', component: ResendCodeComponent},
-            {path: 'forgotPassword/:email', component: ForgotPassword2Component},
+            {path: 'forgotPassword/:email', component: ForgotPasswordStep2Component},
             {path: 'forgotPassword', component: ForgotPasswordStep1Component},
             {path: 'newPassword', component: NewPasswordComponent},
             { path: '', component: HomeLandingComponent }

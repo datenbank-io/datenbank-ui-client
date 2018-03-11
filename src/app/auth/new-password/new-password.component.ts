@@ -1,21 +1,19 @@
 import {Component} from "@angular/core";
 import {Router} from "@angular/router";
-import {UserRegistrationService} from "../../../service/user-registration.service";
-import {UserLoginService} from "../../../service/user-login.service";
-import {CognitoCallback} from "../../../service/cognito.service";
+import {UserRegistrationService} from "../../service/user-registration.service";
+import {UserLoginService} from "../../service/user-login.service";
+import {CognitoCallback} from "../../service/cognito.service";
 
 export class NewPasswordUser {
-    username: string;
-    existingPassword: string;
-    password: string;
+  username: string;
+  existingPassword: string;
+  password: string;
 }
-/**
- * This component is responsible for displaying and controlling
- * the registration of the user.
- */
+
 @Component({
-    selector: 'awscognito-angular2-app',
-    templateUrl: './newpassword.html'
+  selector: 'awscognito-angular2-app',
+  templateUrl: './new-password.component.html',
+  styleUrls: ['./new-password.component.scss']
 })
 export class NewPasswordComponent implements CognitoCallback {
     registrationUser: NewPasswordUser;
