@@ -8,7 +8,6 @@ export class MainService {
   private socketHost = 'http://localhost:3000';
   socketStatus: String;
   dbConnectionStatus: String;
-  // dbResponse: String;
 
   constructor() {
     this.startSocketConnection()

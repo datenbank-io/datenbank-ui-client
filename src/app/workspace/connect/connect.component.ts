@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { LocalStorage } from 'ngx-store';
 
 import { MainService } from '../../main.service';
+import { WorkspaceService } from '../../service/workspace.service';
 
 @Component({
   selector: 'app-connect',
@@ -10,16 +10,11 @@ import { MainService } from '../../main.service';
   styleUrls: ['./connect.component.css']
 })
 export class ConnectComponent implements OnInit {
-  @ViewChild('heroForm') f: NgForm;
-  @LocalStorage() host: String;
-  @LocalStorage() port: String;
-  @LocalStorage() database: String;
-  @LocalStorage() username: String;
-  @LocalStorage() password: String;
-  @LocalStorage() dialect: String;
+  @ViewChild('connectForm') f: NgForm;
 
   constructor(
     private mainService: MainService,
+    public workspace: WorkspaceService
   ) { }
 
   ngOnInit() {

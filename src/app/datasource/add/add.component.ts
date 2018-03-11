@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { DatasourceService } from "../../service/datasource.service";
 import { CognitoCallback } from "../../service/cognito.service";
-import { DatasourceStuff } from '../list/list.component';
+import { DatasourceModel } from "../datasource.model";
 
 @Component({
   selector: 'awscognito-angular2-app',
@@ -10,7 +10,7 @@ import { DatasourceStuff } from '../list/list.component';
   styleUrls: ['./add.component.scss']
 })
 export class DatasourceAddComponent implements CognitoCallback {
-  datasource: DatasourceStuff;
+  datasource: DatasourceModel;
   router: Router;
   errorMessage: string;
 
@@ -20,7 +20,7 @@ export class DatasourceAddComponent implements CognitoCallback {
   }
 
   onInit() {
-      this.datasource = new DatasourceStuff();
+      this.datasource = new DatasourceModel();
       this.errorMessage = null;
   }
 

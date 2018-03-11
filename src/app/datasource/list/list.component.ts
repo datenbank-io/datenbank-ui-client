@@ -3,17 +3,7 @@ import {UserLoginService} from "../../service/user-login.service";
 import {LoggedInCallback} from "../../service/cognito.service";
 import {Router} from "@angular/router";
 import {DynamoDBService} from "../../service/ddb.service";
-
-export class DatasourceStuff {
-  public userId: string;
-  public id: string;
-  public dialect: string;
-  public host: string;
-  public port: string;
-  public database: string;
-  public username: string;
-  public password: string;
-}
+import { DatasourceModel } from "../datasource.model";
 
 @Component({
   selector: 'awscognito-angular2-app',
@@ -22,7 +12,7 @@ export class DatasourceStuff {
 })
 export class DatasourceListComponent implements LoggedInCallback {
 
-  public datasource: Array<DatasourceStuff> = [];
+  public datasource: Array<DatasourceModel> = [];
 
   constructor(public router: Router, public ddb: DynamoDBService, public userService: UserLoginService) {
       this.userService.isAuthenticated(this);

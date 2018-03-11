@@ -21,6 +21,7 @@ import { CognitoUtil } from "./service/cognito.service";
 import { AwsUtil } from "./service/aws.service";
 import { DynamoDBService } from "./service/ddb.service";
 import { DatasourceService } from "./service/datasource.service";
+import { WorkspaceService } from "./service/workspace.service";
 
 import { ResponseGridComponent } from './workspace/response-grid/response-grid.component';
 
@@ -89,7 +90,8 @@ import { DatasourceRemoveComponent } from './datasource/remove/remove.component'
     UserRegistrationService,
     UserLoginService,
     UserParametersService,
-    DatasourceService
+    DatasourceService,
+    WorkspaceService
   ],
   bootstrap: [AppComponent]
 })

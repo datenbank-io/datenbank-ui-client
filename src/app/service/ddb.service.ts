@@ -3,7 +3,7 @@ import {CognitoUtil} from "./cognito.service";
 import {environment} from "../../environments/environment";
 
 import { LogStuff } from "../secure/useractivity/useractivity.component";
-import { DatasourceStuff } from "../datasource/list/list.component";
+import { DatasourceModel } from "../datasource/datasource.model";
 
 import * as AWS from "aws-sdk/global";
 import * as DynamoDB from "aws-sdk/clients/dynamodb";
@@ -91,7 +91,7 @@ export class DynamoDBService {
         });
     }
 
-    getDatasourceEntries(mapArray: Array<DatasourceStuff>) {
+    getDatasourceEntries(mapArray: Array<DatasourceModel>) {
       console.log("DynamoDBService: reading from DDB with creds - " + AWS.config.credentials);
       var params = {
           TableName: 'datasource',
@@ -130,7 +130,7 @@ export class DynamoDBService {
       }
     }
 
-    async writeDatasource(datasource: DatasourceStuff): Promise<boolean> {
+    async writeDatasource(datasource: DatasourceModel): Promise<boolean> {
       console.log("DynamoDBService: writing " + datasource.dialect + " entry");
 
       datasource.userId = this.cognitoUtil.getCognitoIdentity();
@@ -154,6 +154,7 @@ export class DynamoDBService {
                   dialect: {S: datasource.dialect},
                   host: {S: datasource.host},
                   port: {S: datasource.port},
+                  database: {S: datasource.database},
                   username: {S: datasource.username},
                   password: {S: datasource.password}
               }
@@ -195,6 +196,46 @@ export class DynamoDBService {
           DDB.deleteItem(itemParams, function (result) {
             console.log("DynamoDBService: deleted entry: " + JSON.stringify(result));
             resolve(true);
+        });
+      })
+    }
+
+    async getDatasourceEntry(id: string): Promise<DatasourceModel> {
+      console.log("DynamoDBService: getting " + id + " entry");
+
+      const userId = this.cognitoUtil.getCognitoIdentity();
+
+      let clientParams:any = {
+          params: {TableName: 'datasource'}
+      };
+      if (environment.dynamodb_endpoint) {
+          clientParams.endpoint = environment.dynamodb_endpoint;
+      }
+      var DDB = new DynamoDB(clientParams);
+
+      // Write the item to the table
+      var itemParams =
+          {
+              TableName: 'datasource',
+              Key: {
+                  userId: {S: userId},
+                  id: {S: id}
+              }
+          };
+
+      return new Promise<DatasourceModel>((resolve) => {
+          DDB.getItem(itemParams, function (err, result) {
+            console.log("DynamoDBService: got entry: " + JSON.stringify(result));
+            const datasource = new DatasourceModel();
+            datasource.userId = result.Item.userId.S;
+            datasource.id = result.Item.id.S;
+            datasource.dialect = result.Item.dialect.S;
+            datasource.host = result.Item.host.S;
+            datasource.port = result.Item.port.S;
+            datasource.database = result.Item.database.S;
+            datasource.username = result.Item.username.S;
+            datasource.password = result.Item.password.S;
+            return resolve(datasource);
         });
       })
     }
