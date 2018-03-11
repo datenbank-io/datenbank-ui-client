@@ -10,6 +10,7 @@ import { MainService } from '../../main.service';
 })
 export class EditorComponent implements OnInit {
   @LocalStorage() text: string = "";
+  options:any = { printMargin: false };
 
   constructor(private mainService: MainService) { }
 

@@ -1,5 +1,7 @@
 <div>
   <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <input name="host" [(ngModel)]="host" placeholder="host" />
+    <input name="port" [(ngModel)]="port" placeholder="port" />
     <input name="database" [(ngModel)]="database" placeholder="database" />
     <input name="username" [(ngModel)]="username" placeholder="username" />
     <input name="password" [(ngModel)]="password" placeholder="password" />

@@ -11,6 +11,8 @@ import { MainService } from '../../main.service';
 })
 export class ConnectComponent implements OnInit {
   @ViewChild('heroForm') f: NgForm;
+  @LocalStorage() host: String;
+  @LocalStorage() port: String;
   @LocalStorage() database: String;
   @LocalStorage() username: String;
   @LocalStorage() password: String;
@@ -25,6 +27,8 @@ export class ConnectComponent implements OnInit {
 
   onSubmit(f: NgForm) {
     this.mainService.startDbConnection({
+      host: f.value.host,
+      port: f.value.port,
       database: f.value.database,
       username: f.value.username,
       password: f.value.password,

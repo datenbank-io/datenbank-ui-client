@@ -39,10 +39,10 @@ export class MainService {
     })
   }
 
-  startDbConnection({ database, username, password, dialect }) {
+  startDbConnection({ host, port, database, username, password, dialect }) {
     console.log('db:connecting...')
     this.socket.emit('db-connect', {
-      database, username, password, dialect
+      host, port, database, username, password, dialect
     })
   }
 

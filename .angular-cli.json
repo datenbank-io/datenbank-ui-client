@@ -22,7 +22,7 @@
         "../node_modules/bootstrap/dist/css/bootstrap.css",
         "../node_modules/flatpickr/dist/flatpickr.css",
         "../node_modules/angular-slickgrid/lib/multiple-select/multiple-select.css",
-        "styles.css",
+        "styles.scss",
         "../node_modules/angular-slickgrid/styles/css/slickgrid-theme-bootstrap.css"
       ],
       "scripts": [
@@ -67,7 +67,8 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
-    "component": {}
+    "styleExt": "scss",
+    "component": {
+    }
   }
 }

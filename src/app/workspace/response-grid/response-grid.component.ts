@@ -15,7 +15,7 @@ export class ResponseGridComponent implements OnInit {
 
   ngOnInit() {
     this.gridOptions = {
-      enableAutoResize: true,
+      enableAutoResize: false,
       enableCellNavigation: true
     };
   }
