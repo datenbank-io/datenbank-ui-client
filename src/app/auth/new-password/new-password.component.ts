@@ -12,8 +12,7 @@ export class NewPasswordUser {
 
 @Component({
   selector: 'awscognito-angular2-app',
-  templateUrl: './new-password.component.html',
-  styleUrls: ['./new-password.component.scss']
+  templateUrl: './new-password.component.html'
 })
 export class NewPasswordComponent implements CognitoCallback {
     registrationUser: NewPasswordUser;

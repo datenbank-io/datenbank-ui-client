@@ -5,8 +5,7 @@ import {Router} from "@angular/router";
 
 @Component({
   selector: 'awscognito-angular2-app',
-  templateUrl: './resend-code.component.html',
-  styleUrls: ['./resend-code.component.scss']
+  templateUrl: './resend-code.component.html'
 })
 export class ResendCodeComponent implements CognitoCallback {
 
@@ -25,7 +24,7 @@ export class ResendCodeComponent implements CognitoCallback {
       if (error != null) {
           this.errorMessage = "Something went wrong...please try again";
       } else {
-          this.router.navigate(['/home/confirmRegistration', this.email]);
+          this.router.navigate(['/auth/confirmRegistration', this.email]);
       }
   }
 }

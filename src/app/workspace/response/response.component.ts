@@ -5,8 +5,7 @@ import { MainService } from '../../main.service';
 
 @Component({
   selector: 'app-response',
-  templateUrl: './response.component.html',
-  styleUrls: ['./response.component.css']
+  templateUrl: './response.component.html'
 })
 export class ResponseComponent implements OnInit {
   @ViewChild('parent', { read: ViewContainerRef }) container: ViewContainerRef;

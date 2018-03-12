@@ -6,8 +6,7 @@ import { WorkspaceService } from '../../service/workspace.service';
 
 @Component({
   selector: 'app-connect',
-  templateUrl: './connect.component.html',
-  styleUrls: ['./connect.component.css']
+  templateUrl: './connect.component.html'
 })
 export class ConnectComponent implements OnInit {
   @ViewChild('connectForm') f: NgForm;

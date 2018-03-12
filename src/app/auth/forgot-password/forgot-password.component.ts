@@ -23,7 +23,7 @@ export class ForgotPasswordStep1Component implements CognitoCallback {
 
   cognitoCallback(message: string, result: any) {
       if (message == null && result == null) { //error
-          this.router.navigate(['/home/forgotPassword', this.email]);
+          this.router.navigate(['/auth/forgotPassword', this.email]);
       } else { //success
           this.errorMessage = message;
       }
@@ -69,7 +69,7 @@ export class ForgotPasswordStep2Component implements CognitoCallback, OnInit, On
           this.errorMessage = message;
           console.log("result: " + this.errorMessage);
       } else { //success
-          this.router.navigate(['/home/login']);
+          this.router.navigate(['/auth/login']);
       }
   }
 

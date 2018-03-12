@@ -6,8 +6,7 @@ import { DynamoDBService } from '../service/ddb.service';
 
 @Component({
   selector: 'app-workspace',
-  templateUrl: './workspace.component.html',
-  styleUrls: ['./workspace.component.scss']
+  templateUrl: './workspace.component.html'
 })
 export class WorkspaceComponent implements OnInit {
   id: string;

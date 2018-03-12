@@ -7,8 +7,7 @@ import { DatasourceModel } from "../datasource.model";
 
 @Component({
   selector: 'awscognito-angular2-app',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  templateUrl: './list.component.html'
 })
 export class DatasourceListComponent implements LoggedInCallback {
 
@@ -21,7 +20,7 @@ export class DatasourceListComponent implements LoggedInCallback {
 
   isLoggedIn(message: string, isLoggedIn: boolean) {
       if (!isLoggedIn) {
-          this.router.navigate(['/home/login']);
+          this.router.navigate(['/auth/login']);
       } else {
           console.log("scanning DDB");
           this.ddb.getDatasourceEntries(this.datasource);

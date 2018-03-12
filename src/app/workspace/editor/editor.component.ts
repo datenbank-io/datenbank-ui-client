@@ -5,8 +5,7 @@ import { MainService } from '../../main.service';
 
 @Component({
   selector: 'app-editor',
-  templateUrl: './editor.component.html',
-  styleUrls: ['./editor.component.css']
+  templateUrl: './editor.component.html'
 })
 export class EditorComponent implements OnInit {
   @LocalStorage() text: string = "";

@@ -6,8 +6,7 @@ import {LoggedInCallback} from "../../service/cognito.service";
 
 @Component({
   selector: 'awscognito-angular2-app',
-  templateUrl: './confirm-registration.component.html',
-  styleUrls: ['./confirm-registration.component.scss']
+  templateUrl: './confirm-registration.component.html'
 })
 export class ConfirmRegistrationComponent implements OnInit, OnDestroy {
   confirmationCode: string;

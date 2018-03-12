@@ -12,8 +12,7 @@ export class RegistrationUser {
 
 @Component({
   selector: 'awscognito-angular2-app',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  templateUrl: './register.component.html'
 })
 export class RegisterComponent implements CognitoCallback {
   registrationUser: RegistrationUser;
@@ -42,7 +41,7 @@ export class RegisterComponent implements CognitoCallback {
       } else { //success
           //move to the next step
           console.log("redirecting");
-          this.router.navigate(['/home/confirmRegistration', result.user.username]);
+          this.router.navigate(['/auth/confirmRegistration', result.user.username]);
       }
   }
 }

@@ -25,7 +25,7 @@ export class JwtComponent implements LoggedInCallback {
 
     isLoggedIn(message: string, isLoggedIn: boolean) {
         if (!isLoggedIn) {
-            this.router.navigate(['/home/login']);
+            this.router.navigate(['/auth/login']);
         } else {
             this.cognitoUtil.getAccessToken(new AccessTokenCallback(this));
             this.cognitoUtil.getIdToken(new IdTokenCallback(this));

@@ -3,8 +3,7 @@ import { Column, GridOption } from 'angular-slickgrid';
 
 @Component({
   selector: 'app-response-grid',
-  templateUrl: './response-grid.component.html',
-  styleUrls: ['./response-grid.component.css']
+  templateUrl: './response-grid.component.html'
 })
 export class ResponseGridComponent implements OnInit {
   columnDefinitions: Column[];

@@ -21,7 +21,7 @@ export class MyProfileComponent implements LoggedInCallback {
 
     isLoggedIn(message: string, isLoggedIn: boolean) {
         if (!isLoggedIn) {
-            this.router.navigate(['/home/login']);
+            this.router.navigate(['/auth/login']);
         } else {
             this.userParams.getParameters(new GetParametersCallback(this, this.cognitoUtil));
         }

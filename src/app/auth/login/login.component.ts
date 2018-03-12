@@ -6,8 +6,7 @@ import { DynamoDBService } from "../../service/ddb.service";
 
 @Component({
   selector: 'awscognito-angular2-app',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: './login.component.html'
 })
 export class LoginComponent implements CognitoCallback, LoggedInCallback, OnInit {
   email: string;
@@ -46,10 +45,10 @@ export class LoginComponent implements CognitoCallback, LoggedInCallback, OnInit
           console.log("result: " + this.errorMessage);
           if (this.errorMessage === 'User is not confirmed.') {
               console.log("redirecting");
-              this.router.navigate(['/home/confirmRegistration', this.email]);
+              this.router.navigate(['/auth/confirmRegistration', this.email]);
           } else if (this.errorMessage === 'User needs to set password.') {
               console.log("redirecting to set new password");
-              this.router.navigate(['/home/newPassword']);
+              this.router.navigate(['/auth/newPassword']);
           }
       } else { //success
           this.ddb.writeLogEntry("login");
