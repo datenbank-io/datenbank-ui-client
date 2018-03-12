@@ -13,20 +13,22 @@ export class ResponseComponent implements OnInit {
   constructor(private mainService: MainService, private _cfr: ComponentFactoryResolver) { }
 
   ngOnInit() {
+    setTimeout(() => {
+      console.log('db-response-prepare')
+      this.mainService.socket.on('db-response', (data) => {
+        const columnDefinitions = Object.keys(data[0]).map((e) => {
+          return { id: e, name: e, field: e }
+        });
 
-    this.mainService.socket.on('db-response', (data) => {
-      const columnDefinitions = Object.keys(data[0]).map((e) => {
-        return { id: e, name: e, field: e }
-      });
+        for (let i = 0; i < data.length; i++) {
+          data[i].id = i;
+        }
 
-      for (let i = 0; i < data.length; i++) {
-        data[i].id = i;
-      }
-
-      this.addComponent({
-        columnDefinitions, dataset: data
-      });
-    })
+        this.addComponent({
+          columnDefinitions, dataset: data
+        });
+      })
+    }, 1000);
   }
 
   addComponent({ columnDefinitions, dataset }) {

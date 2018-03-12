@@ -9,7 +9,6 @@ import { WebStorageModule } from 'ngx-store';
 import { AceEditorModule } from 'ng2-ace-editor';
 
 import { AppComponent } from './app.component';
-import { ConnectComponent } from './workspace/connect/connect.component';
 import { EditorComponent } from './workspace/editor/editor.component';
 import { ResponseComponent } from './workspace/response/response.component';
 
@@ -21,7 +20,6 @@ import { CognitoUtil } from "./service/cognito.service";
 import { AwsUtil } from "./service/aws.service";
 import { DynamoDBService } from "./service/ddb.service";
 import { DatasourceService } from "./service/datasource.service";
-import { WorkspaceService } from "./service/workspace.service";
 
 import { ResponseGridComponent } from './workspace/response-grid/response-grid.component';
 
@@ -59,7 +57,6 @@ import { DatasourceRemoveComponent } from './datasource/remove/remove.component'
     SecureHomeComponent,
     JwtComponent,
     AppComponent,
-    ConnectComponent,
     EditorComponent,
     ResponseComponent,
     ResponseGridComponent,
@@ -90,8 +87,7 @@ import { DatasourceRemoveComponent } from './datasource/remove/remove.component'
     UserRegistrationService,
     UserLoginService,
     UserParametersService,
-    DatasourceService,
-    WorkspaceService
+    DatasourceService
   ],
   bootstrap: [AppComponent]
 })

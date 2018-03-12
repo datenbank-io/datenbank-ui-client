@@ -9,16 +9,18 @@ export class MainService {
   socketStatus: String;
   dbConnectionStatus: String;
 
-  constructor() {
-    this.startSocketConnection()
-  }
+  constructor() { }
 
-  startSocketConnection() {
+  startDbConnection({ host, port, database, username, password, dialect }) {
     this.socket = io.connect(this.socketHost);
 
     this.socket.on('connect', () => {
       this.socketStatus = 'connected';
       console.log('socket:connected!');
+
+      this.socket.emit('db-connect', {
+        host, port, database, username, password, dialect
+      })
     });
 
     this.socket.on('disconnect', () => {
@@ -38,11 +40,10 @@ export class MainService {
     })
   }
 
-  startDbConnection({ host, port, database, username, password, dialect }) {
-    console.log('db:connecting...')
-    this.socket.emit('db-connect', {
-      host, port, database, username, password, dialect
-    })
+  closeDbConnection() {
+    console.log('db:closing...')
+    this.socket.disconnect();
+    this.socket = undefined;
   }
 
   runDbQuery({ query }) {
