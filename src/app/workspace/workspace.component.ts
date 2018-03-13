@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { DatasourceModel } from '../datasource/datasource.model';
 import { DynamoDBService } from '../service/ddb.service';
-import { MainService } from '../main.service';
+import { WorkspaceService } from './workspace.service';
 
 @Component({
   selector: 'app-workspace',
@@ -14,7 +14,7 @@ export class WorkspaceComponent implements OnInit {
   private datasource: DatasourceModel;
 
   constructor(
-    private mainService: MainService,
+    private workspaceService: WorkspaceService,
     private route: ActivatedRoute, private router: Router,
     public ddb: DynamoDBService) {}
 
@@ -27,18 +27,11 @@ export class WorkspaceComponent implements OnInit {
 
     this.datasource = await this.ddb.getDatasourceEntry(this.id);
 
-    this.mainService.startDbConnection({
-      host: this.datasource.host,
-      port: this.datasource.port,
-      database: this.datasource.database,
-      username: this.datasource.username,
-      password: this.datasource.password,
-      dialect: this.datasource.dialect
-    })
+    this.workspaceService.connect(this.datasource);
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-    this.mainService.closeDbConnection();
+    this.workspaceService.disconnect();
   }
 }

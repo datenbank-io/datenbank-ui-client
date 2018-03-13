@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { EditorComponent } from './workspace/editor/editor.component';
 import { ResponseComponent } from './workspace/response/response.component';
 
-import { MainService } from './main.service';
+import { WorkspaceService } from './workspace/workspace.service';
 import { UserRegistrationService } from "./service/user-registration.service";
 import { UserParametersService } from "./service/user-parameters.service";
 import { UserLoginService } from "./service/user-login.service";
@@ -80,7 +80,7 @@ import { DatasourceRemoveComponent } from './datasource/remove/remove.component'
     ResponseGridComponent
   ],
   providers: [
-    MainService,
+    WorkspaceService,
     CognitoUtil,
     AwsUtil,
     DynamoDBService,

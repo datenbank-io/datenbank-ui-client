@@ -5,6 +5,5 @@
     [theme]="'eclipse'"
     [options]="options"
     #queryEditor style="height:150px;"></ace-editor>
-  <button (click)="parseQueryEditor(queryEditor.value)">RUN</button>
-
+  <button (click)="parseQueryEditor(queryEditor.value)" [disabled]="!workspaceService.isReady || workspaceService.isRunning">RUN</button>
 </div>

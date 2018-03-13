@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorage } from 'ngx-store';
 
-import { MainService } from '../../main.service';
+import { WorkspaceService } from '../workspace.service';
 
 @Component({
   selector: 'app-editor',
@@ -11,12 +11,12 @@ export class EditorComponent implements OnInit {
   @LocalStorage() text: string = "";
   options:any = { printMargin: false };
 
-  constructor(private mainService: MainService) { }
+  constructor(private workspaceService: WorkspaceService) { }
 
   ngOnInit() {
   }
 
   parseQueryEditor(queryEditor: string) {
-    this.mainService.runDbQuery({ query: queryEditor });
+    this.workspaceService.emit('runQuery', { query: queryEditor });
   }
 }
