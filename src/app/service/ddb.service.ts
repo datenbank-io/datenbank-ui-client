@@ -3,7 +3,7 @@ import {CognitoUtil} from "./cognito.service";
 import {environment} from "../../environments/environment";
 
 import { LogStuff } from "../secure/useractivity/useractivity.component";
-import { DatasourceModel } from "../datasource/datasource.model";
+import { Datasource } from "../datasource/datasource";
 
 import * as AWS from "aws-sdk/global";
 import * as DynamoDB from "aws-sdk/clients/dynamodb";
@@ -91,7 +91,7 @@ export class DynamoDBService {
         });
     }
 
-    getDatasourceEntries(mapArray: Array<DatasourceModel>) {
+    getDatasourceEntries(mapArray: Array<Datasource>) {
       console.log("DynamoDBService: reading from DDB with creds - " + AWS.config.credentials);
       var params = {
           TableName: 'datasource',
@@ -130,7 +130,7 @@ export class DynamoDBService {
       }
     }
 
-    async writeDatasource(datasource: DatasourceModel): Promise<boolean> {
+    async writeDatasource(datasource: Datasource): Promise<boolean> {
       console.log("DynamoDBService: writing " + datasource.dialect + " entry");
 
       datasource.userId = this.cognitoUtil.getCognitoIdentity();
@@ -200,7 +200,7 @@ export class DynamoDBService {
       })
     }
 
-    async getDatasourceEntry(id: string): Promise<DatasourceModel> {
+    async getDatasourceEntry(id: string): Promise<Datasource> {
       console.log("DynamoDBService: getting " + id + " entry");
 
       const userId = this.cognitoUtil.getCognitoIdentity();
@@ -223,10 +223,10 @@ export class DynamoDBService {
               }
           };
 
-      return new Promise<DatasourceModel>((resolve) => {
+      return new Promise<Datasource>((resolve) => {
           DDB.getItem(itemParams, function (err, result) {
             console.log("DynamoDBService: got entry: " + JSON.stringify(result));
-            const datasource = new DatasourceModel();
+            const datasource = new Datasource();
             datasource.userId = result.Item.userId.S;
             datasource.id = result.Item.id.S;
             datasource.dialect = result.Item.dialect.S;

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EventEmitter } from 'events';
-import { DatasourceModel } from '../datasource/datasource.model';
+import { Datasource } from '../datasource/datasource';
 
 import * as io from 'socket.io-client';
 
@@ -11,7 +11,7 @@ export class WorkspaceService extends EventEmitter {
   private isReady: Boolean;
   private isRunning: Boolean = false;
 
-  connect(datasource: DatasourceModel) {
+  connect(datasource: Datasource) {
     this.socket = io.connect(this.socketHost);
 
     this.socket.on('connect', () => {

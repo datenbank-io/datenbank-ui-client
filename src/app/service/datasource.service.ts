@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { DatasourceModel } from "../datasource/datasource.model";
+import { Datasource } from "../datasource/datasource";
 import { DynamoDBService } from "./ddb.service";
 import * as AWS from "aws-sdk/global";
 
@@ -10,7 +10,7 @@ export class DatasourceService {
 
     }
 
-    async register(datasource: DatasourceModel): Promise<boolean> {
+    async register(datasource: Datasource): Promise<boolean> {
         console.log("DatasourceService: user is " + datasource);
 
         await this.ddb.writeDatasource(datasource);

@@ -1,4 +1,4 @@
-export class DatasourceModel {
+export class Datasource {
   public userId: string;
   public id: string;
   public dialect: string;

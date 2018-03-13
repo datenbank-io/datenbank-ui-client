@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
-import { DatasourceModel } from '../datasource/datasource.model';
+import { Datasource } from '../datasource/datasource';
 import { DynamoDBService } from '../service/ddb.service';
 import { WorkspaceService } from './workspace.service';
 
@@ -11,7 +11,7 @@ import { WorkspaceService } from './workspace.service';
 export class WorkspaceComponent implements OnInit {
   id: string;
   private sub: any;
-  private datasource: DatasourceModel;
+  private datasource: Datasource;
 
   constructor(
     private workspaceService: WorkspaceService,

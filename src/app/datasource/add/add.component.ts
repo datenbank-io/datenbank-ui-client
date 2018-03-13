@@ -1,14 +1,14 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { DatasourceService } from "../../service/datasource.service";
-import { DatasourceModel } from "../datasource.model";
+import { Datasource } from "../datasource";
 
 @Component({
   selector: 'awscognito-angular2-app',
   templateUrl: './add.component.html'
 })
 export class DatasourceAddComponent implements OnInit {
-  datasource: DatasourceModel;
+  datasource: Datasource;
   router: Router;
   errorMessage: string;
 
@@ -17,7 +17,7 @@ export class DatasourceAddComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.datasource = new DatasourceModel();
+      this.datasource = new Datasource();
       this.errorMessage = null;
   }
 
