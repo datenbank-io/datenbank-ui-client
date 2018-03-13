@@ -17,8 +17,28 @@ export class ResponseComponent implements OnInit {
       console.log('on-query-response')
 
       const columnDefinitions = Object.keys(data[0]).map((e) => {
-        return { id: e, name: e, field: e }
+        return {
+          id: e,
+          name: e,
+          field: e,
+          resizable: true,
+          selectable: true,
+          cssClass: undefined,
+          minWidth: undefined,
+          maxWidth: undefined
+        }
       });
+
+      columnDefinitions.unshift({
+        id: '#',
+        name: '#',
+        field: 'id',
+        resizable: false,
+        selectable: false,
+        cssClass: 'slick-cell-id',
+        minWidth: 50,
+        maxWidth: 50
+      })
 
       for (let i = 0; i < data.length; i++) {
         data[i].id = i;
@@ -33,6 +53,7 @@ export class ResponseComponent implements OnInit {
 
   addComponent({ columnDefinitions, dataset }) {
     var comp = this._cfr.resolveComponentFactory(ResponseGridComponent);
+    this.container.clear();
     var expComponent = this.container.createComponent(comp);
 
     expComponent.instance.columnDefinitions = columnDefinitions;
