@@ -4,6 +4,6 @@
     [mode]="'sql'"
     [theme]="'eclipse'"
     [options]="options"
-    #queryEditor style="height:150px;"></ace-editor>
-  <button (click)="parseQueryEditor(queryEditor.value)" [disabled]="!workspaceService.isReady || workspaceService.isRunning">RUN</button>
+    #editor style="height:150px;"></ace-editor>
+  <button (click)="parseQueryEditor()" [disabled]="!workspaceService.isReady || workspaceService.isRunning">RUN</button>
 </div>

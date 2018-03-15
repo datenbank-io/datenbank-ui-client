@@ -15,37 +15,60 @@ export class ResponseComponent implements OnInit {
   ngOnInit() {
     this.workspaceService.on('queryResponse', (data) => {
       console.log('on-query-response')
+      let columnDefinitions;
 
-      const columnDefinitions = Object.keys(data[0]).map((e) => {
-        return {
-          id: e,
-          name: e,
-          field: e,
-          resizable: true,
-          selectable: true,
-          cssClass: undefined,
-          minWidth: undefined,
-          maxWidth: undefined
+      if (data.success && Array.isArray(data.result)) {
+        columnDefinitions = Object.keys(data.result[0]).map((e) => {
+          return {
+            id: e,
+            name: e,
+            field: e,
+            resizable: true,
+            cssClass: undefined,
+            minWidth: undefined,
+            maxWidth: undefined
+          }
+        });
+
+        for (let i = 0; i < data.result.length; i++) {
+          data.result[i].id = i;
         }
-      });
+      }
+
+      else {
+        columnDefinitions = [
+          {
+            id: 'result',
+            name: 'result',
+            field: 'result',
+            resizable: true,
+            cssClass: undefined,
+            minWidth: undefined,
+            maxWidth: undefined
+          }
+        ]
+
+        data.result = [
+          {
+            id: '1',
+            result: data.result
+          }
+        ]
+      }
 
       columnDefinitions.unshift({
         id: '#',
         name: '#',
         field: 'id',
         resizable: false,
-        selectable: false,
         cssClass: 'slick-cell-id',
         minWidth: 50,
         maxWidth: 50
       })
 
-      for (let i = 0; i < data.length; i++) {
-        data[i].id = i;
-      }
-
       this.addComponent({
-        columnDefinitions, dataset: data
+        columnDefinitions,
+        dataset: data.result
       });
     })
 

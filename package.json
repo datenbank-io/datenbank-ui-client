@@ -23,7 +23,7 @@
     "@angular/router": "^5.2.0",
     "@ngx-translate/core": "^9.1.1",
     "amazon-cognito-identity-js": "^2.0.1",
-    "angular-slickgrid": "^0.12.2",
+    "angular-slickgrid": "^0.13.2",
     "aws-sdk": "^2.207.0",
     "bootstrap": "^4.0.0",
     "core-js": "^2.4.1",
