@@ -10,10 +10,11 @@ export class WorkspaceService extends EventEmitter {
   private socketHost = 'http://localhost:3000';
   private isReady: Boolean;
   private isRunning: Boolean = false;
+  public explorer;
 
   connect(datasource: Datasource) {
     this.socket = io.connect(this.socketHost);
-
+    this.explorer = [];
     this.socket.on('connect', () => {
       console.log('socket:connected!');
 
@@ -37,15 +38,40 @@ export class WorkspaceService extends EventEmitter {
       console.log('db:connected');
     })
 
-    this.socket.on('db-response', (data) => {
+    this.socket.on('db-payload', (data) => {
       this.isRunning = false;
-      console.log(data);
       this.emit('queryResponse', data);
     })
 
     this.on('runQuery', ({ query }) => {
       this.isRunning = true;
       this.socket.emit('db-query', { query })
+    })
+
+    // nodes = [
+    //   {
+    //     name: 'public',
+    //     children: [
+    //       { name: 'tables', children: [{ name: 'x' }, { name: 'y' }] },
+    //       { name: 'views', children: [{ name: 'x'}, {name: 'z'}] }
+    //     ]
+    //   }
+    // ];
+
+    this.on('queryResponse', (data) => {
+      if (data.type === 'explorer') {
+        const content = data.content;
+        content.map((e) => {
+          e.children = [
+            { name: 'tables', children: e.tables },
+            { name: 'views', children: e.views }
+          ]
+
+          delete e.tables;
+          delete e.views;
+        })
+        this.explorer = content;
+      }
     })
   }
 

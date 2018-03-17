@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { ResponseGridComponent } from '../response-grid/response-grid.component';
 
-import { WorkspaceService } from '../workspace.service';
+import { WorkspaceService } from '../../../workspace.service';
 
 @Component({
   selector: 'app-response',
@@ -14,11 +14,14 @@ export class ResponseComponent implements OnInit {
 
   ngOnInit() {
     this.workspaceService.on('queryResponse', (data) => {
-      console.log('on-query-response')
+
+      if (data.type !== 'query-result') return false
+
+      // console.log('on-query-response')
       let columnDefinitions;
 
-      if (data.success && Array.isArray(data.result)) {
-        columnDefinitions = Object.keys(data.result[0]).map((e) => {
+      if (Array.isArray(data.content) && data.content.length >= 1) {
+        columnDefinitions = Object.keys(data.content[0]).map((e) => {
           return {
             id: e,
             name: e,
@@ -30,17 +33,17 @@ export class ResponseComponent implements OnInit {
           }
         });
 
-        for (let i = 0; i < data.result.length; i++) {
-          data.result[i].id = i;
+        for (let i = 0; i < data.content.length; i++) {
+          data.content[i].id = i;
         }
       }
 
       else {
         columnDefinitions = [
           {
-            id: 'result',
-            name: 'result',
-            field: 'result',
+            id: 'content',
+            name: 'content',
+            field: 'content',
             resizable: true,
             cssClass: undefined,
             minWidth: undefined,
@@ -48,10 +51,10 @@ export class ResponseComponent implements OnInit {
           }
         ]
 
-        data.result = [
+        data.content = [
           {
             id: '1',
-            result: data.result
+            content: data.content
           }
         ]
       }
@@ -66,9 +69,12 @@ export class ResponseComponent implements OnInit {
         maxWidth: 50
       })
 
+      console.log('-')
+      console.log(data.content);
+
       this.addComponent({
         columnDefinitions,
-        dataset: data.result
+        dataset: data.content
       });
     })
 

@@ -9,6 +9,7 @@ export class ResponseGridComponent implements OnInit {
   columnDefinitions: Column[];
   gridOptions: GridOption;
   dataset: any[];
+  gridId = Date.now();
 
   constructor() {}
 

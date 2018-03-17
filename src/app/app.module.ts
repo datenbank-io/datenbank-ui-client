@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule } from "@angular/http";
 
@@ -7,10 +7,14 @@ import { TranslateModule } from '@ngx-translate/core';
 import { AngularSlickgridModule } from 'angular-slickgrid';
 import { WebStorageModule } from 'ngx-store';
 import { AceEditorModule } from 'ng2-ace-editor';
+import { TreeModule } from 'angular-tree-component';
+
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTabsModule, MatButtonModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
-import { EditorComponent } from './workspace/editor/editor.component';
-import { ResponseComponent } from './workspace/response/response.component';
+import { EditorComponent } from './workspace/right-column/tab/editor/editor.component';
+import { ResponseComponent } from './workspace/right-column/tab/response/response.component';
 
 import { WorkspaceService } from './workspace/workspace.service';
 import { UserRegistrationService } from "./service/user-registration.service";
@@ -21,7 +25,7 @@ import { AwsUtil } from "./service/aws.service";
 import { DynamoDBService } from "./service/ddb.service";
 import { DatasourceService } from "./service/datasource.service";
 
-import { ResponseGridComponent } from './workspace/response-grid/response-grid.component';
+import { ResponseGridComponent } from './workspace/right-column/tab/response-grid/response-grid.component';
 
 import { NewPasswordComponent } from "./auth/new-password/new-password.component";
 import { RegisterComponent } from "./auth/register/register.component";
@@ -41,6 +45,9 @@ import { WorkspaceComponent } from './workspace/workspace.component';
 import { DatasourceListComponent } from './datasource/list/list.component';
 import { DatasourceAddComponent } from './datasource/add/add.component';
 import { DatasourceRemoveComponent } from './datasource/remove/remove.component';
+import { LeftColumnComponent } from './workspace/left-column/left-column.component';
+import { RightColumnComponent } from './workspace/right-column/right-column.component';
+import { TabComponent } from './workspace/right-column/tab/tab.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +71,10 @@ import { DatasourceRemoveComponent } from './datasource/remove/remove.component'
     ConfirmRegistrationComponent,
     DatasourceListComponent,
     DatasourceAddComponent,
-    DatasourceRemoveComponent
+    DatasourceRemoveComponent,
+    LeftColumnComponent,
+    RightColumnComponent,
+    TabComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +83,11 @@ import { DatasourceRemoveComponent } from './datasource/remove/remove.component'
     AngularSlickgridModule.forRoot(),
     WebStorageModule,
     AceEditorModule,
+    TreeModule,
     HttpModule,
+    MatTabsModule,
+    MatButtonModule,
+    NoopAnimationsModule,
     routing
   ],
   entryComponents: [
@@ -89,6 +103,7 @@ import { DatasourceRemoveComponent } from './datasource/remove/remove.component'
     UserParametersService,
     DatasourceService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule { }
