@@ -9,7 +9,10 @@ import { AceEditorModule } from 'ng2-ace-editor';
 import { TreeModule } from 'angular-tree-component';
 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTabsModule, MatButtonModule } from '@angular/material';
+import { MatTabsModule, MatButtonModule, MatGridListModule } from '@angular/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 import { AppComponent } from './app.component';
 import { EditorComponent } from './workspace/right-column/tab/editor/editor.component';
@@ -49,6 +52,7 @@ import { RightColumnComponent } from './workspace/right-column/right-column.comp
 import { TabComponent } from './workspace/right-column/tab/tab.component';
 
 import { AsyncLocalStorageModule } from 'angular-async-local-storage';
+import { TopComponent } from './workspace/top/top.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +79,8 @@ import { AsyncLocalStorageModule } from 'angular-async-local-storage';
     DatasourceRemoveComponent,
     LeftColumnComponent,
     RightColumnComponent,
-    TabComponent
+    TabComponent,
+    TopComponent
   ],
   imports: [
     BrowserModule,
@@ -87,6 +92,10 @@ import { AsyncLocalStorageModule } from 'angular-async-local-storage';
     HttpModule,
     MatTabsModule,
     MatButtonModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
     NoopAnimationsModule,
     AsyncLocalStorageModule,
     routing

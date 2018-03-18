@@ -35,7 +35,7 @@ export class RightColumnComponent implements OnInit {
     counter += 1;
 
     this.tabs.push({
-      label: `Editor ${counter}`,
+      label: `Tab ${counter}`,
       id: cuid()
     })
 
