@@ -15,11 +15,15 @@
           <td>{{ item.database }}</td>
           <td>{{ item.username }}</td>
           <td>
-            <button type="button" [routerLink]="['/securehome/datasource/remove/', item.id]" class="btn btn-info btn-block">
+            <button type="button" (click)="removeDatasource(item)" class="btn btn-info btn-block">
               Delete
             </button>
 
-            <button type="button" [routerLink]="['/workspace/', item.id]" class="btn btn-info btn-block">
+            <button type="button" [routerLink]="['/securehome/datasource/edit/', item.id]" class="btn btn-info btn-block">
+              Edit
+            </button>
+
+            <button type="button" [routerLink]="['/workspace/', item.id]" (click)="openConfirmationDialog()" class="btn btn-info btn-block">
               Connect
             </button>
           </td>

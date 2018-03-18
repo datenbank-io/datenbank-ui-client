@@ -134,7 +134,8 @@ export class DynamoDBService {
       console.log("DynamoDBService: writing " + datasource.dialect + " entry");
 
       datasource.userId = this.cognitoUtil.getCognitoIdentity();
-      datasource.id = cuid();
+      if (!datasource.id)
+        datasource.id = cuid();
 
       let clientParams:any = {
           params: {TableName: 'datasource'}

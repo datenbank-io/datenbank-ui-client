@@ -13,6 +13,7 @@ import { MatTabsModule, MatButtonModule, MatGridListModule } from '@angular/mate
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppComponent } from './app.component';
 import { EditorComponent } from './workspace/right-column/tab/editor/editor.component';
@@ -45,7 +46,7 @@ import { JwtComponent } from "./secure/jwttokens/jwt.component";
 import { routing } from "./app.routes";
 import { WorkspaceComponent } from './workspace/workspace.component';
 import { DatasourceListComponent } from './datasource/list/list.component';
-import { DatasourceAddComponent } from './datasource/add/add.component';
+import { DatasourceFormComponent } from './datasource/form/form.component';
 import { DatasourceRemoveComponent } from './datasource/remove/remove.component';
 import { LeftColumnComponent } from './workspace/left-column/left-column.component';
 import { RightColumnComponent } from './workspace/right-column/right-column.component';
@@ -53,6 +54,7 @@ import { TabComponent } from './workspace/right-column/tab/tab.component';
 
 import { AsyncLocalStorageModule } from 'angular-async-local-storage';
 import { TopComponent } from './workspace/top/top.component';
+import { DialogComponent } from './shared/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -75,12 +77,13 @@ import { TopComponent } from './workspace/top/top.component';
     WorkspaceComponent,
     ConfirmRegistrationComponent,
     DatasourceListComponent,
-    DatasourceAddComponent,
+    DatasourceFormComponent,
     DatasourceRemoveComponent,
     LeftColumnComponent,
     RightColumnComponent,
     TabComponent,
-    TopComponent
+    TopComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -96,12 +99,14 @@ import { TopComponent } from './workspace/top/top.component';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatDialogModule,
     NoopAnimationsModule,
     AsyncLocalStorageModule,
     routing
   ],
   entryComponents: [
-    ResponseGridComponent
+    ResponseGridComponent,
+    DialogComponent
   ],
   providers: [
     WorkspaceService,

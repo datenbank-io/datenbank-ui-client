@@ -15,14 +15,12 @@ export class WorkspaceComponent implements OnInit {
 
   constructor(
     private workspaceService: WorkspaceService,
-    private route: ActivatedRoute, private router: Router,
+    private route: ActivatedRoute,
     public ddb: DynamoDBService) {}
 
   async ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-       this.id = params['id']; // (+) converts string 'id' to a number
-
-       // In a real app: dispatch action to load the details here.
+       this.id = params['id'];
     });
 
     this.datasource = await this.ddb.getDatasourceEntry(this.id);

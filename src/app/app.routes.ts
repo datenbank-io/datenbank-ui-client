@@ -13,7 +13,7 @@ import { ResendCodeComponent } from "./auth/resend-code/resend-code.component";
 import { NewPasswordComponent } from "./auth/new-password/new-password.component";
 import { WorkspaceComponent } from "./workspace/workspace.component";
 import { DatasourceListComponent } from './datasource/list/list.component';
-import { DatasourceAddComponent } from './datasource/add/add.component';
+import { DatasourceFormComponent } from './datasource/form/form.component';
 import { DatasourceRemoveComponent } from './datasource/remove/remove.component';
 
 const homeRoutes: Routes = [
@@ -53,7 +53,8 @@ const secureHomeRoutes: Routes = [
           path: 'datasource',
           children: [
             { path: 'list', component: DatasourceListComponent },
-            { path: 'add', component: DatasourceAddComponent },
+            { path: 'add', component: DatasourceFormComponent },
+            { path: 'edit/:id', component: DatasourceFormComponent },
             { path: 'remove/:id', component: DatasourceRemoveComponent }
           ]
         },

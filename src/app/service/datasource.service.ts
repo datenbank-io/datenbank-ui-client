@@ -10,7 +10,7 @@ export class DatasourceService {
 
     }
 
-    async register(datasource: Datasource): Promise<boolean> {
+    async save(datasource: Datasource): Promise<boolean> {
         console.log("DatasourceService: user is " + datasource);
 
         await this.ddb.writeDatasource(datasource);
