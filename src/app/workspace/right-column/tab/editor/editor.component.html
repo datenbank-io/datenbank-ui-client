@@ -1,9 +1,9 @@
 <div>
+  <button (click)="parseQueryEditor()" [disabled]="!workspaceService.isReady || workspaceService.isRunning">RUN</button>
   <ace-editor
-    [(text)]="text"
+    [(text)]="tab.text"
     [mode]="'sql'"
     [theme]="'eclipse'"
     [options]="options"
     #editor style="height:150px;"></ace-editor>
-  <button (click)="parseQueryEditor()" [disabled]="!workspaceService.isReady || workspaceService.isRunning">RUN</button>
 </div>

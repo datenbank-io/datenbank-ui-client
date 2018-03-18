@@ -43,9 +43,9 @@ export class WorkspaceService extends EventEmitter {
       this.emit('queryResponse', data);
     })
 
-    this.on('runQuery', ({ query }) => {
+    this.on('runQuery', ({ query, ref }) => {
       this.isRunning = true;
-      this.socket.emit('db-query', { query })
+      this.socket.emit('db-query', { query, ref })
     })
 
     // nodes = [

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Column, GridOption } from 'angular-slickgrid';
 
 @Component({
@@ -6,6 +6,8 @@ import { Column, GridOption } from 'angular-slickgrid';
   templateUrl: './response-grid.component.html'
 })
 export class ResponseGridComponent implements OnInit {
+  @Input() tabId: string;
+
   columnDefinitions: Column[];
   gridOptions: GridOption;
   dataset: any[];

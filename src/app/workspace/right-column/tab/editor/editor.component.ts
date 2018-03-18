@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-// import { LocalStorage } from 'ngx-store';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 
 import { WorkspaceService } from '../../../workspace.service';
 
@@ -9,12 +8,14 @@ import { WorkspaceService } from '../../../workspace.service';
 })
 export class EditorComponent implements OnInit {
   @ViewChild('editor') editor;
-  // @LocalStorage() text: string = "";
+  @Input() tab: Object;
+
   options:any = { printMargin: false };
 
   constructor(private workspaceService: WorkspaceService) { }
 
   ngOnInit() {
+    // this.text = 'abc';
   }
 
   parseQueryEditor() {
@@ -22,8 +23,6 @@ export class EditorComponent implements OnInit {
     const value = this.editor.value;
     const query = (selectedValue) ? selectedValue : value;
 
-    console.log(this.editor._editor.getSelectedText())
-    console.log(query);
-    this.workspaceService.emit('runQuery', { query });
+    this.workspaceService.emit('runQuery', { query, ref: this.tab['id'] });
   }
 }

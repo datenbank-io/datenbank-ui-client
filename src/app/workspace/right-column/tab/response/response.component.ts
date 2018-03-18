@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { ResponseGridComponent } from '../response-grid/response-grid.component';
 
 import { WorkspaceService } from '../../../workspace.service';
@@ -9,6 +9,7 @@ import { WorkspaceService } from '../../../workspace.service';
 })
 export class ResponseComponent implements OnInit {
   @ViewChild('parent', { read: ViewContainerRef }) container: ViewContainerRef;
+  @Input() tab: Object
 
   constructor(private workspaceService: WorkspaceService, private _cfr: ComponentFactoryResolver) { }
 
@@ -16,6 +17,7 @@ export class ResponseComponent implements OnInit {
     this.workspaceService.on('queryResponse', (data) => {
 
       if (data.type !== 'query-result') return false
+      if (data.ref !== this.tab['id']) return false
 
       // console.log('on-query-response')
       let columnDefinitions;
@@ -69,9 +71,6 @@ export class ResponseComponent implements OnInit {
         maxWidth: 50
       })
 
-      console.log('-')
-      console.log(data.content);
-
       this.addComponent({
         columnDefinitions,
         dataset: data.content
@@ -81,9 +80,11 @@ export class ResponseComponent implements OnInit {
   }
 
   addComponent({ columnDefinitions, dataset }) {
-    var comp = this._cfr.resolveComponentFactory(ResponseGridComponent);
-    this.container.clear();
-    var expComponent = this.container.createComponent(comp);
+    const comp = this._cfr.resolveComponentFactory(ResponseGridComponent);
+    this.container.clear()
+
+    const expComponent = this.container.createComponent(comp);
+    expComponent.instance.tabId = this.tab['id'];
 
     expComponent.instance.columnDefinitions = columnDefinitions;
     expComponent.instance.dataset = dataset;

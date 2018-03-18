@@ -5,7 +5,6 @@ import { HttpModule } from "@angular/http";
 
 import { TranslateModule } from '@ngx-translate/core';
 import { AngularSlickgridModule } from 'angular-slickgrid';
-import { WebStorageModule } from 'ngx-store';
 import { AceEditorModule } from 'ng2-ace-editor';
 import { TreeModule } from 'angular-tree-component';
 
@@ -49,6 +48,8 @@ import { LeftColumnComponent } from './workspace/left-column/left-column.compone
 import { RightColumnComponent } from './workspace/right-column/right-column.component';
 import { TabComponent } from './workspace/right-column/tab/tab.component';
 
+import { AsyncLocalStorageModule } from 'angular-async-local-storage';
+
 @NgModule({
   declarations: [
     NewPasswordComponent,
@@ -81,13 +82,13 @@ import { TabComponent } from './workspace/right-column/tab/tab.component';
     FormsModule,
     TranslateModule.forRoot(),
     AngularSlickgridModule.forRoot(),
-    WebStorageModule,
     AceEditorModule,
     TreeModule,
     HttpModule,
     MatTabsModule,
     MatButtonModule,
     NoopAnimationsModule,
+    AsyncLocalStorageModule,
     routing
   ],
   entryComponents: [
